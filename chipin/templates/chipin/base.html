@@ -12,16 +12,19 @@
         </div>
         <div class="user-info">
             {% if request.user.is_authenticated %}
-                <span>{{ request.user.username }}</span>
+                <a href="{% url 'chipin:home' %}">Home</a> 
+                <span>{{ request.user.profile.nickname }}</span>
                 <form action="{% url 'users:logout' %}" method="post">
                     {% csrf_token %}
                     <button type="submit">Logout</button>
                 </form>
             {% else %}
-                <a href="{% url 'users:login' %}">Login</a> <a href="{% url 'users:register' %}">Register</a>
+                <a href="{% url 'users:login' %}">Login</a> 
+                <a href="{% url 'users:register' %}">Register</a>
             {% endif %}
         </div>
     </header>
+
     <!-- Messages block -->
     {% if messages %}
         <ul class="messages">
@@ -30,10 +33,12 @@
         {% endfor %}
         </ul>
     {% endif %}
+
     <main>
         {% block content %}
         {% endblock %}
     </main>
+
     <footer>
         <p>&copy; 2024 ChipIn</p>
     </footer>
