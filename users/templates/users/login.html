@@ -1,17 +1,7 @@
 {% extends 'chipin/base.html' %}
 {% load static %}
-
 {% block title %}Login - ChipIn{% endblock %}
-
 {% block content %}
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    
     <div class="login-container">
         <form id="login-form" action="{% url 'users:login' %}" method="post" onsubmit="return executeRecaptcha();">
             {% csrf_token %}
@@ -21,8 +11,6 @@
             <button type="submit">Login</button>
         </form>
     </div>
-
-    <!-- Google reCAPTCHA script -->
     <script src="https://www.google.com/recaptcha/api.js?render=6LeMRm4qAAAAADD-PhyZEaZz2nWI4DMYqeYw43uP"></script>
     <script>
         function executeRecaptcha() {
@@ -32,7 +20,7 @@
                     document.getElementById('login-form').submit();
                 });
             });
-            return false;  // Prevent default form submission until reCAPTCHA token is ready
+            return false;  // Prevent default form submission
         }
     </script>
 {% endblock %}

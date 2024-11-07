@@ -1,33 +1,9 @@
 {% extends 'chipin/base.html' %}
 {% load static %}
-
 {% block title %}User Management{% endblock %}
 
-{% block content %}
-    <!-- Display any messages (success, errors, etc.) -->
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    
-    <!-- Header with user info and logout form -->
-    <div class="header">
-        <div class="user-info">
-            <span>Welcome, {{ request.user.first_name }} {{ request.user.last_name }}</span>
-            <form action="{% url 'users:logout' %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Log out</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- User-specific message -->
+{% block content %} 
     <h2>Welcome {{ request.user.first_name }}</h2>
     <p>This page is for user management functions.</p>
-
-    <!-- Link to ChipIn homepage -->
     <a href="{% url 'chipin:home' %}">Click through to ChipIn Functions</a>
 {% endblock %}
